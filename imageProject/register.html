@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+    <style>
+        @import url(./css/register.css);
+    </style>
+    <script src="./javascript/utils/jquery.min.js"></script>
+    <script src="./javascript/script/register.js"></script>
+</head>
+
+<body>
+    <div class="rg_layout">
+        <div class="rg_left">
+            <p>新用户注册</p>
+            <p>USER REGISTER</p>
+        </div>
+        <div class="rg_center">
+            <div class="rg_form">
+                <table>
+                    <tr>
+                        <td class="td_left"><label for="username">用户名</label></td>
+                        <td class="td_right">
+                            <input type="text" name="username" id="username" placeholder="请输入用户名">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="password">密码</label></td>
+                        <td class="td_right">
+                            <input type="password" name="password" id="password"
+                            onblur="checkPwd()" placeholder="6-30位英文、数字、符号 区分大小写">
+                        </td>
+                    </tr>
+                    <tr id="checkPwd" hidden="hidden">
+                        <td class="td_left"></td>
+                        <td class="td_right">
+                            <span><text id="check"></text></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="email">Email</label></td>
+                        <td class="td_right">
+                            <input type="email" name="email" id="email" placeholder="请输入邮箱">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="tel">手机号</label></td>
+                        <td class="td_right">
+                            <input type="text" name="tel" id="tel" placeholder="请输入手机号">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="checkcode">验证码</label></td>
+                        <td class="td_right">
+                            <input type="text" name="checkcode" id="checkcode"
+                             onblur="checkCode()" placeholder="请输入验证码">
+                            <img id="img_check" src="/getCode/0"
+                             onclick="getCode()">
+                        </td>
+                    </tr>
+                    <tr id="checkMsg" hidden="hidden">
+                        <td class="td_left"></td>
+                        <td class="td_right">
+                            <span><text id="checkcodeMSG"></text></span>
+                        </td>
+                    </tr>
+                    <tr id="registerBtn">
+                        <td colspan="2" align="center">
+                            <input type="button" id="button" value="注册"
+                             onclick="register()">
+                        </td>
+                    </tr>
+                </table>
+
+
+            </div>
+        </div>
+        <div class="rg_right">
+            <p>已有账号?<a href="./login.html">立即登录</a></p>
+        </div>
+
+    </div>
+
+</body>

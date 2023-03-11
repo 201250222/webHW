@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <title>图片风格切换</title>
+    <!-- p5 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"></script>
+    <!-- ml5 -->
+    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+    <!--<script src="../javascript/script/ml5.js"></script>-->
+</head>
+
+<body>
+    <input type='file' id='file' style='width: 200px; height: 100px; border: dashed' /><br />
+    <img id='image1' style='border: solid 1px grey; min-width: 200px; min-height: 200px;' />
+    <img id='image2' style='border: solid 1px grey; min-width: 200px; min-height: 200px;' /><br />
+    <input type='button' value='转换' onclick='transfer()' />
+    <div id='result'></div>
+
+    <script>
+        console.log('ml5 version:', ml5.version);
+
+        let fileElem = document.getElementById('file');
+
+        fileElem.addEventListener('change', fileChanged, false);
+
+        function fileChanged(evt) {
+            let file = evt.target.files[0];
+            if (!file) return;
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('image1').setAttribute('src', e.target.result);
+            }
+            reader.readAsDataURL(file);
+        }
+
+        log('加载中...');
+        let styler = ml5.styleTransfer('data/model/style-transfer/wave', function() {
+            log('加载成功...');
+        })
+
+        function transfer() {
+            log('转换中...');
+
+            let inImg = document.getElementById('image1');
+            let outImg = document.getElementById('image2');
+
+            setTimeout(function () {
+                styler.transfer(inImg, function (err, result) {
+                    outImg.setAttribute('src', result.src);
+                })
+                log('');
+            }, 10);
+        }
+
+        function log(c) {
+            document.getElementById('result').innerHTML = c;
+        }
+
+    </script>
+</body>
+
+</html>

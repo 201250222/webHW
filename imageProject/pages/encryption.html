@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>generate blind-watermark</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <div style="margin:30px 30px 30px 30px">
+        <h1>水印加密</h1>
+        请选择一张图片： <input type="file" id="file" accept="image/*" /> <br /><br />
+        您想要隐藏的信息：<br /><textarea id="msg" style="width:100%;height:80px;" placeholder="type here!"></textarea>
+        <br /><br />
+        <button onclick='writeIMG()'>点击隐藏</button>
+        <br />
+        <br />
+
+        <h1>获取图片中隐藏的信息</h1>
+        选择加密过的图片： <input type="file" id="file1" accept="image/*" /> <br /><br />
+        <button onclick='readIMG()'>读取信息</button><br /><br />
+        隐藏信息：<br />
+        <div id="result" style="width:100%; background-color:#777"></div>
+
+    </div>
+</body>
+<script src="../javascript/script/jquery.min.js"></script>
+<!-- CryptoStego JS files.-->
+<script type="text/javascript" src="../javascript/blind-watermark/sha512.js"></script>
+<script type="text/javascript" src="../javascript/blind-watermark/utf_8.js"></script>
+<script type="text/javascript" src="../javascript/blind-watermark/mersenne-twister.js"></script>
+<script type="text/javascript" src="../javascript/blind-watermark/utils.js"></script>
+<script type="text/javascript" src="../javascript/blind-watermark/readimg.js"></script>
+<script type="text/javascript" src="../javascript/blind-watermark/setimg.js"></script>
+<script type="text/javascript" src="../javascript/blind-watermark/main.js"></script>
+<!-- above scripts equivalent to <script type="text/javascript" src="cryptostego.min.js"></script>-->
+<script>
+    function writeIMG() {
+        function writefunc() {
+            if (writeMsgToCanvas('canvas', $("#msg").val(), $("#pass").val(), 3) != null) {
+                var myCanvas = document.getElementById("canvas");
+                var image = myCanvas.toDataURL("image/jpeg", 1.0);
+                var element = document.createElement('a');
+                element.setAttribute('href', image);
+                element.setAttribute('download', 'result.jpg');
+                element.style.display = 'none';
+                document.body.appendChild(element);
+                element.click();
+                document.body.removeChild(element);
+            }
+        }
+        loadIMGtoCanvas('file', 'canvas', writefunc, 500);
+    }
+    function readIMG() {
+        function readfunc() {
+            var t = readMsgFromCanvas('canvas', $("#pass1").val(), 3);
+            if (t != null) {
+                t = t.split('&').join('&amp;');
+                t = t.split(' ').join('&nbsp;');
+                t = t.split('<').join('&lt;');
+                t = t.split('>').join('&gt;');
+                t = t.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                $("#result").html(t);
+            } else $("#result").html('ERROR REAVEALING MESSAGE!');
+
+        }
+        loadIMGtoCanvas('file1', 'canvas', readfunc);
+    }
+</script>
+
+</html>

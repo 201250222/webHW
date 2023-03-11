@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>图片缩略展示页面</title>
+    <meta name='viewport' content='width=device-width,initial-scale=1.0,user-scalable=no' />
+    <style>
+        @import url(./css/index.css);
+    </style>
+    <script src="./javascript/utils/jquery.min.js"></script>
+    <script src="./javascript/script/main.js"></script>
+</head>
+<body onload="setUserInfo()">
+<div>
+    <button onclick="setTheme('white')">白天模式</button>
+    <button onclick="setTheme('dark')">夜间模式</button>
+    <button onclick="setCssVar('--theme-background', '#eee')">白天模式1</button>
+    <button onclick="setCssVar('--theme-background', '#333')">夜间模式1</button>
+    <a href="./pages/styleChange.html"><button>图片风格切换</button></a>
+    <text id="name" value=""></text>
+</div>
+<div class="wrap" id='wrap'>
+
+    <div class="item"><a href="./pages/svg-watermark.html"><img src="./images/1.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/blind-watermark.html"><img src="./images/blind-watermark-result.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img3.html"><img src="./images/3.jpg" class="img" id="myImage"/></a></div>
+    <div class="item"><a href="./pages/img4.html"><img src="./images/4.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img5.html"><img src="./images/5.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img1.html"><img src="./images/1.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img2.html"><img src="./images/2.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img3.html"><img src="./images/3.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img4.html"><img src="./images/4.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img5.html"><img src="./images/5.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img1.html"><img src="./images/1.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img2.html"><img src="./images/2.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img3.html"><img src="./images/3.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img4.html"><img src="./images/4.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img5.html"><img src="./images/5.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img1.html"><img src="./images/1.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img2.html"><img src="./images/2.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img3.html"><img src="./images/3.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img4.html"><img src="./images/4.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img5.html"><img src="./images/5.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img1.html"><img src="./images/1.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img2.html"><img src="./images/2.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img3.html"><img src="./images/3.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img4.html"><img src="./images/4.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img5.html"><img src="./images/5.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img1.html"><img src="./images/1.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img2.html"><img src="./images/2.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img3.html"><img src="./images/3.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img4.html"><img src="./images/4.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img5.html"><img src="./images/5.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img1.html"><img src="./images/1.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img2.html"><img src="./images/2.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img3.html"><img src="./images/3.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img4.html"><img src="./images/4.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img5.html"><img src="./images/5.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img1.html"><img src="./images/1.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img2.html"><img src="./images/2.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img3.html"><img src="./images/3.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img4.html"><img src="./images/4.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img5.html"><img src="./images/5.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img1.html"><img src="./images/1.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img2.html"><img src="./images/2.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img3.html"><img src="./images/3.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img4.html"><img src="./images/4.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img5.html"><img src="./images/5.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img1.html"><img src="./images/1.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img2.html"><img src="./images/2.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img3.html"><img src="./images/3.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img4.html"><img src="./images/4.jpg" class="img"/></a></div>
+    <div class="item"><a href="./pages/img5.html"><img src="./images/5.jpg" class="img"/></a></div>
+
+</div>
+</body>
+</html>
